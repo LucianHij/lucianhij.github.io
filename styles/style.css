@@ -1,0 +1,114 @@
+body {
+  overflow: hidden;
+  background-color: #EEEEEE;
+}
+
+md-whiteframe {
+  background: #fff;
+}
+
+#content {
+  padding: 24px;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+.dynamic-grid {
+  position: relative;
+  display: none;
+}
+.dynamic-grid.angular-grid {
+  display: block;
+}
+.grid {
+  position: absolute;
+  list-style: none;
+  box-sizing: border-box;
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.grid.ng-leave {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+}
+.grid.ng-leave.ng-leave-active {
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter {
+  -webkit-transition: all ease 400ms;
+  transition: all ease 400ms;
+  -webkit-transition-delay: 500ms;
+  transition-delay: 500ms;
+  -webkit-transform: scale(0.5);
+   transform: scale(0.5);
+  opacity: 0;
+}
+.grid.ng-enter.ng-enter-active {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
+}
+.grid-img {
+  width: 100%;
+  vertical-align: middle;
+  opacity: 0;
+  visibility: hidden;
+}
+.grid-img.img-loaded {
+  visibility: visible;
+  opacity: 1;
+}
+
+.comlik {
+  margin: 7px;
+}
+
+.google-map {
+  height: 450px;
+}
+
+.search {
+  padding: 4px 4px 0!important;
+}
+
+.gallery_search {
+  padding: 4px 4px 0!important;
+  color: #fff!important;
+}
+
+.input_cont {
+  padding: 0!important;
+  margin: 0!important;
+}
+
+.bottomSheetdemoBasicUsage .md-inline-list-icon-label {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -10px;
+  height: 24px;
+  vertical-align: middle; }
+.bottomSheetdemoBasicUsage .md-grid-item-content {
+  height: 96px; }
+.bottomSheetdemoBasicUsage .md-grid-item-content md-icon {
+  height: 48px;
+  width: 48px; }
+.bottomSheetdemoBasicUsage .md-grid-text {
+  padding-bottom: 5px; }
+.bottomSheetdemoBasicUsage md-list-item, .bottomSheetdemoBasicUsage md-list-item .md-list-item-inner {
+  min-height: 48px; }
+.bottomSheetdemoBasicUsage h2 {
+  line-height: 36px;
+  padding-top: 10px; }
+.bottomSheetdemoBasicUsage .md-subheader .md-subheader-inner {
+  padding: 0px; }
+.bottomSheetdemoBasicUsage md-toast {
+  background-color: #B14141; }
+.bottomSheetdemoBasicUsage md-toast > * {
+  font-weight: bolder; }

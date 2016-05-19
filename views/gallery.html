@@ -1,0 +1,48 @@
+<md-toolbar md-scroll-shrink layout-gt-sm="row" layout-align="end center">
+  
+  <md-input-container md-no-float class="input_cont">
+    <md-icon>search</md-icon>
+    	<input class="gallery_search" ng-model="captionSearched" type="text" ng-keyup="gallVm.SearchedImages($event, captionSearched)" placeholder="Search">
+  </md-input-container>
+
+  <div>
+    <span style="margin-left: 30px;">Filter by: </span>
+    <md-button class="md-icon-button" aria-label="Button Date" ng-click="gallVm.sortByDate(gallVm.pics); mainVm.showFiltered('date');">
+      <md-icon>access_time</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Button Favorite" ng-click="gallVm.sortByLikes(gallVm.pics); mainVm.showFiltered('likes');">
+      <md-icon>favorite_border</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Button Comment" ng-click="gallVm.sortByComments(gallVm.pics); mainVm.showFiltered('comments');">
+      <md-icon>comment</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<section id="content" role="content" layout="column" layout-padding md-scroll-y class="md-whiteframe-z1">
+  <ul class="dynamic-grid" angular-grid="gallVm.pics" angular-grid-options="gallVm.angularGridOptions"
+			angular-grid-id="gallery">
+	   <li data-ng-repeat="pic in gallVm.pics" class="grid">
+				<md-card>
+				  <img ng-src="{{pic.images.low_resolution.url}}" class="md-card-image grid-img">
+				  <md-divider></md-divider>
+		      <md-card-content>
+		      		<span class="md-body-1"><b>{{pic.caption.text}}<b></span></br></br>
+		          <span class="md-body-1">Uploaded on : {{gallVm.timeConverter(pic.caption.created_time)}}</span>
+	        </md-card-content>
+				  <md-card-actions layout="row" layout-align="space-between center">
+			    	<md-card-icon-actions> 	
+				      <md-icon class="comlik">favorite</md-icon>
+				    	<span class="md-body-2">{{pic.likes.count}}</span>
+
+				      <md-icon class="comlik">comment</md-icon>
+				    	<span class="md-body-2">{{pic.comments.count}}</span>
+				      </md-card-icon-actions>
+
+				    <md-button class="md-icon-button" aria-label="Share">
+				      <md-icon>share</md-icon>
+				    </md-button>
+				  </md-card-actions>
+				</md-card>
+	   </li>
+	</ul>
+</section>

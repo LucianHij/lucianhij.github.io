@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+  <title>Photo Web Visualizer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- <link href="favicon.ico" rel="icon" type="image/x-icon" /> -->
+  <link rel="stylesheet prefetch" href="scripts\vendor\angular-material.min.css">
+  <link href="scripts\vendor\mdi.css" rel="stylesheet">
+  <script src='https://maps.googleapis.com/maps/api/js'></script>
+
+  <link rel="stylesheet" href="styles\style.css">
+</head>
+
+<body>
+<div ng-app="app" ng-controller="MainCtrl as mainVm" layout="row" layout-fill ng-cloak md-theme="{{mainVm.theme}}" md-theme-watch="true">
+
+  <!-- ====================== Sidebar menu ====================== -->
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-toolbar class="md-tall md-hue-2" layout-align="end end">
+    <md-icon style="font-size: 48px">satellite</md-icon>
+      <div class="md-toolbar-tools md-clickable" layout layout-padding>    
+        <div layout="column" layout-padding>
+          <span class="md-title">Photo Web Visualizer</span>
+          <span class="md-caption">REAL TIME PHOTOS LOCATION</span>
+        </div>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="User Settings" ng-click="mainVm.toast('3 points')">
+          <md-icon>more_vert</md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    
+    <!-- ====================== Sidebar buttons ====================== -->
+    <md-content role="navigation">
+      <md-list>
+        <md-list-item></md-list-item>
+        <md-list-item ng-click="$state.go('home')">
+          <md-icon>map</md-icon>
+          <p class="md-body-2">Map</p>
+          <span flex></span>
+          <md-icon>chevron_right</md-icon>
+        </md-list-item>
+
+        <md-list-item ng-click="$state.go('gallery')">
+          <md-icon>photo_library</md-icon> 
+          <p class="md-body-2">Gallery</p>
+          <span flex></span>
+          <md-icon>chevron_right</md-icon>
+        </md-list-item>
+
+        <md-list-item ng-click="$state.go('about')">
+          <md-icon>info_outline</md-icon>
+          <p class="md-body-2">About</p>
+          <span flex></span>
+          <md-icon>chevron_right</md-icon>
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+  
+  <!-- ====================== Header is here ====================== -->
+  <section layout="column" role="main" flex>
+    <md-toolbar role="toolbar">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="mainVm.toggleSidenav('left')" hide-gt-md aria-label="Menu">
+          <md-icon>menu</md-icon>
+        </md-button>
+        <h4 class="md-title">{{$state.current.title}}</h4>
+        <span flex></span>
+
+        <!-- ====================== Color button ====================== -->
+        <md-menu md-position-mode="target-right target">
+          <md-button class="md-icon-button" aria-label="Change Theme" ng-click="$mdOpenMenu($event)">
+            <md-icon>color_lens</md-icon>
+          </md-button>
+          <md-menu-content width="2">
+            <md-subheader>Change Theme</md-subheader>
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.changeTheme('red')">
+                <md-icon md-menu-align-target>done</md-icon>
+                Red
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.changeTheme('teal')">
+                <md-icon md-menu-align-target>done</md-icon>
+                Teal
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.changeTheme('brown')">
+                <md-icon md-menu-align-target>done</md-icon>
+                Brown
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.changeTheme('indigo')">
+                <md-icon md-menu-align-target>done</md-icon>
+                Indigo
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+        
+        <!-- ====================== Dropdown button ====================== -->
+        <md-menu md-position-mode="target-right target">
+          <md-button class="md-icon-button" aria-label="Dropdown Header" ng-click="$mdOpenMenu($event)">
+            <md-icon>settings</md-icon>
+          </md-button>
+          <md-menu-content width="4">
+            <md-subheader>Dropdown Header</md-subheader>
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Flickr')">
+                <md-icon md-menu-align-target>camera</md-icon>
+                Flickr
+              </md-button>
+            </md-menu-item>
+
+            <md-menu-item>
+              <md-button layout-fill md-ink-ripple ng-click="mainVm.toast('Instagram')">
+                <md-icon md-menu-align-target>photo_camera</md-icon>
+                Instagram
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+      </div>
+    </md-toolbar>
+
+    <!-- ====================== Injected divs go here ====================== -->
+    <div ui-view style="overflow-y:scroll;"></div> 
+
+  </section>
+</div>
+  
+  <script src="scripts\vendor\angular.min.js"></script>
+  <script src="scripts\vendor\angular-ui-router.min.js"></script>
+  <script src="scripts\vendor\angular-animate.min.js"></script>
+  <script src="scripts\vendor\angular-aria.min.js"></script>
+  <script src="scripts\vendor\angular-material.min.js"></script>
+  <script src="scripts\vendor\angulargrid.min.js"></script>
+  <script src="scripts\vendor\ng-map.min.js"></script>
+  
+  <!-- ui-router config -->
+  <script src="scripts/app.js"></script>
+
+  <!-- Controllers -->
+  <script src="scripts/controllers/MainCtrl.js"></script>
+  <script src="scripts/controllers/MapCtrl.js"></script>
+  <script src="scripts/controllers/GalleryCtrl.js"></script>
+  <!-- <script src="scripts/controllers/MarkerCtrl.js"></script> -->
+
+  <!-- Services -->
+  <!-- <script src="scripts/services/imageServiceFlickr.js"></script> -->
+  <script src="scripts/services/imageServiceInstagram.js"></script>
+  <script src="scripts/services/galleryService.js"></script>
+</body>
+</html>

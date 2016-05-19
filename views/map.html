@@ -1,0 +1,42 @@
+<section id="content" role="content" layout="column" layout-padding md-scroll-y ng-controller="MapCtrl">
+	<md-card>
+		<ng-map class="google-map" zoom="{{mapVm.address ? 12 : 2}}" center="{{mapVm.address}}" zoom-to-include-markers="auto">
+			<shape id="circle" name="circle" centered="true" 
+				center="{{mapVm.address}}"
+				stroke-color='#FF0000'
+				stroke-opacity="0.4"
+				stroke-weight="1" 
+				radius="5000"></shape>
+				<custom-marker position="[{{p.location.latitude}},{{p.location.longitude}}]"
+					ng-repeat="p in mapVm.photoPos">
+		      <div style = "width: 70px; height: 70px;">
+		        <img ng-src="{{p.images.thumbnail.url}}">
+		      </div>
+		    </custom-marker>
+<!-- 				<marker ng-repeat="p in mapVm.photoPos"
+	        position="[{{p.location.latitude}},{{p.location.longitude}}]"
+	        data="{{p.location.latitude}}"
+	        on-click="showData();"
+	        title="{{p.caption.from.username}}"></marker> -->
+		</ng-map>
+		
+	  <md-input-container class="search">
+	    <label>Search location</label>
+	    <input ng-model="mapVm.address">
+	  </md-input-container>
+		
+	  <md-card-actions layout="row" layout-align="space-between">
+		  <md-button ng-click="mapVm.getPhotos(map.getCenter().lat(), map.getCenter().lng()); mainVm.showGP();">Get Photos</md-button>
+
+	  	<md-card-icon-actions>
+	  		<md-button ng-click="mapVm.saveToLS(); mainVm.showSR('saved');">SAVE STATE </md-button>
+	  		<md-button ng-click="mapVm.getFromLS(); mainVm.showSR('restored');">RESTORE STATE</md-button>	    
+<!-- 		    <md-button class="md-icon-button" aria-label="Share">
+		      <md-icon>share</md-icon>
+		    </md-button> -->
+		  </md-card-icon-actions>
+
+	  </md-card-actions>
+	</md-card>
+</section>
+ -
