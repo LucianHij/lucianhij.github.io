@@ -12,6 +12,7 @@ function GalleryCtrl(imageServiceInstagram, galleryService, angularGridInstance)
   }
  
   vm.pics = galleryService.getPhotos();
+  vm.pics.ascunde = false;
 
   vm.refresh = function(){
     angularGridInstance.gallery.refresh();
@@ -37,28 +38,27 @@ function GalleryCtrl(imageServiceInstagram, galleryService, angularGridInstance)
   vm.SearchedImages = function(keyEvent, captionSearched){
     
     if(keyEvent.which === 13){
-     
+    console.log (vm.pics); 
       for (var i = 0; i < vm.pics.length; i++)
       {
+        vm.pics[i].ascunde = false;
         if(vm.pics[i].caption != null){
 
 
 
          if(vm.pics[i].caption.text.indexOf(captionSearched) < 0)
            { 
-            vm.pics.splice(i,1);
-            i--;
+            vm.pics[i].ascunde = true;
+            console.log(vm.pics[i].ascunde);
            }
            else
            {
-            console.log(vm.pics[i].caption.text);
-            console.log(vm.pics.length);
+            vm.pics[i].ascunde = false;
            }
         }
         else
         {
-          vm.pics.splice(i,1);
-          i--;
+          vm.pics[i].ascunde = true;
         }
       }
     

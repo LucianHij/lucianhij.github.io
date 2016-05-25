@@ -21,9 +21,9 @@
 <section id="content" role="content" layout="column" layout-padding md-scroll-y class="md-whiteframe-z1">
   <ul class="dynamic-grid" angular-grid="gallVm.pics" angular-grid-options="gallVm.angularGridOptions"
 			angular-grid-id="gallery">
-	   <li data-ng-repeat="pic in gallVm.pics" class="grid">
+	   <li data-ng-repeat="pic in gallVm.pics" class="grid" ng-hide="pic.ascunde">
 				<md-card>
-				  <img ng-src="{{pic.images.low_resolution.url}}" class="md-card-image grid-img">
+				  <a href = "{{pic.link}}"><img ng-src="{{pic.images.low_resolution.url}}" class="md-card-image grid-img" ></a>
 				  <md-divider></md-divider>
 		      <md-card-content>
 		      		<span class="md-body-1"><b>{{pic.caption.text}}<b></span></br></br>
