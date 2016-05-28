@@ -24,22 +24,31 @@ function MapCtrl(imageServiceInstagram, galleryService, NgMap) {
         galleryService.addPhoto(photo);
         vm.photoList.push(photo);
         
+        var ok = 0;
         for (var i = 0; i < vm.photoPos.length; i++) {
             if(photo.location.longitude === vm.photoPos[i].location.longitude && photo.location.latitude === vm.photoPos[i].location.latitude){
-              if(i%2==0)
-              {
-                vm.photoPos[i].location.longitude += (i+1)/100000;
-                vm.photoPos[i].location.latitude += (i+1)/100000;
-              }
-              else
-              {
-                vm.photoPos[i].location.longitude -= (i+1)/100000;
-                vm.photoPos[i].location.latitude -= (i+1)/100000;
-              }
+              ok = 1;
             }
         };
-        
+        if(ok === 0)
           vm.photoPos.push(photo);
+        
+        // for (var i = 0; i < vm.photoPos.length; i++) {
+        //     if(photo.location.longitude === vm.photoPos[i].location.longitude && photo.location.latitude === vm.photoPos[i].location.latitude){
+        //       if(i%2==0)
+        //       {
+        //         vm.photoPos[i].location.longitude += (i+1)/100000;
+        //         vm.photoPos[i].location.latitude += (i+1)/100000;
+        //       }
+        //       else
+        //       {
+        //         vm.photoPos[i].location.longitude -= (i+1)/100000;
+        //         vm.photoPos[i].location.latitude -= (i+1)/100000;
+        //       }
+        //     }
+        // };
+        
+        //   vm.photoPos.push(photo);
       });
 
     };
