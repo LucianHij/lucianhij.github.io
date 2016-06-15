@@ -7,7 +7,7 @@
 
   <div>
     <span style="margin-left: 30px;">Filter by: </span>
-    <md-button class="md-icon-button" aria-label="Button Date" ng-click="gallVm.sortByDate(gallVm.pics); mainVm.showFiltered('date');">
+    <md-button class="md-icon-button" aria-label="Button Date" ng-click="gallVm.sortByDate(gallVm.pics); mainVm.showFiltered('date'); gallVm.PredominantColor();">
       <md-icon>access_time</md-icon>
     </md-button>
     <md-button class="md-icon-button" aria-label="Button Favorite" ng-click="gallVm.sortByLikes(gallVm.pics); mainVm.showFiltered('likes');">
@@ -23,19 +23,19 @@
 			angular-grid-id="gallery">
 	   <li data-ng-repeat="pic in gallVm.pics" class="grid" ng-hide="pic.ascunde">
 				<md-card>
-				  <a href = "{{pic.link}}"><img ng-src="{{pic.images.low_resolution.url}}" class="md-card-image grid-img" ></a>
+				  <a href = "{{pic.original_url}}"><img ng-src="{{pic.url_big}}" class="md-card-image grid-img" ></a>
 				  <md-divider></md-divider>
 		      <md-card-content>
-		      		<span class="md-body-1"><b>{{pic.caption.text}}<b></span></br></br>
-		          <span class="md-body-1">Uploaded on : {{gallVm.timeConverter(pic.caption.created_time)}}</span>
+		      		<span class="md-body-1"><b>{{pic.title}}<b></span></br></br>
+		          <span class="md-body-1">Uploaded on : {{pic.upload_date}}</span>
 	        </md-card-content>
 				  <md-card-actions layout="row" layout-align="space-between center">
 			    	<md-card-icon-actions> 	
 				      <md-icon class="comlik">favorite</md-icon>
-				    	<span class="md-body-2">{{pic.likes.count}}</span>
+				    	<span class="md-body-2">{{pic.views}}</span>
 
 				      <md-icon class="comlik">comment</md-icon>
-				    	<span class="md-body-2">{{pic.comments.count}}</span>
+				    	<span class="md-body-2">{{pic.comments}}</span>
 				      </md-card-icon-actions>
 
 				    <md-button class="md-icon-button" aria-label="Share">

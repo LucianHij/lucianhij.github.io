@@ -1,6 +1,6 @@
 <section id="content" role="content" layout="column" layout-padding md-scroll-y ng-controller="MapCtrl">
 	<md-card>
-		<ng-map class="google-map" zoom="{{mapVm.address ? 12 : 2}}" center="{{mapVm.address}}" zoom-to-include-markers="auto">
+		<ng-map class="google-map" zoom="{{mapVm.address ? 12 : 2}}" center="{{mapVm.address}}" >
 			<shape id="circle" name="circle" centered="true" 
 				center="{{mapVm.address}}"
 				stroke-color='#FF0000'
@@ -8,21 +8,21 @@
 				stroke-weight="1" 
 				radius="5000"></shape>
 				<custom-marker position="[{{p.location.latitude}},{{p.location.longitude}}]"
-					ng-repeat="p in mapVm.photoPos">
-		      <div style = "width: 70px; height: 70px;">
-		        <img ng-src="{{p.images.thumbnail.url}}">
+					ng-repeat="p in mapVm.photoList">
+		      <div>
+		       <a href="{{p.original_url}}" target="_blank"> <img ng-src="{{p.url_small}}"> </a>
 		      </div>
 		    </custom-marker>
-<!-- 				<marker ng-repeat="p in mapVm.photoPos"
+				<!-- <marker ng-repeat="p in mapVm.photoList"
 	        position="[{{p.location.latitude}},{{p.location.longitude}}]"
 	        data="{{p.location.latitude}}"
 	        on-click="showData();"
-	        title="{{p.caption.from.username}}"></marker> -->
+	        ></marker> -->
 		</ng-map>
 		
 	  <md-input-container class="search">
 	    <label>Search location</label>
-	    <input ng-model="mapVm.address">
+	    <input ng-model="mapVm.address ">
 	  </md-input-container>
 		
 	  <md-card-actions layout="row" layout-align="space-between">

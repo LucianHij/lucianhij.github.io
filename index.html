@@ -146,7 +146,9 @@
   <script src="scripts/vendor/angular-material.min.js"></script>
   <script src="scripts/vendor/angulargrid.min.js"></script>
   <script src="scripts/vendor/ng-map.min.js"></script>
-  
+  <script src="scripts/vendor/Vibrant.min.js"></script>
+  <script src="scripts/vendor/Vibrant.js"></script>
+
   <!-- ui-router config -->
   <script src="scripts/app.js"></script>
 
@@ -160,5 +162,14 @@
   <!-- <script src="scripts/services/imageServiceFlickr.js"></script> -->
   <script src="scripts/services/imageServiceInstagram.js"></script>
   <script src="scripts/services/galleryService.js"></script>
+
+<script>
+  // Use `Vibrant` in script 
+  // Vibrant is exported to global. window.Vibrant === Vibrant 
+  console.log(Vibrant.from('C:/Users/Lucian/Desktop/index.jpg').getPalette(function(err, palette) {}););
+  // Or 
+  // ... same as in node.js 
+</script>
+
 </body>
 </html>
